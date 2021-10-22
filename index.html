@@ -1,10 +1,799 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>MMKD A141</title>
+    <title>MKKD A141</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="css/style.css" />
+    <!-- <link rel="style.css" href="style.css" /> -->
+    <style>
+
+                    /* fonts */
+            @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+            /* variabel*/
+            :root {
+            --text-black-900: #000000;
+            --main-color: #570621;
+            --blue: #0000ff;
+            --blue-dark: #18293c;
+            --orange: #ffa500;
+            --green-yellow: #cddc39;
+            --pink-light: #d6adb6;
+            --cyan-light: #daf1ae;
+            --white: #ffffff;
+            --white-alpa-40: rgba(255, 255, 255, 0.4);
+            --white-alpa-25: rgba(255, 255, 255, 0.25);
+            --backdrop-filter-blur: blur(5px);
+            }
+
+            /* Global setting */
+            * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+            outline: none;
+            }
+
+            ::before,
+            ::after {
+            box-sizing: border-box;
+            }
+
+            body {
+            min-height: 100vh;
+            background-image: linear-gradient(
+                to bottom right,
+                var(--pink-light),
+                var(--cyan-light)
+            );
+            background-attachment: fixed;
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+            color: var(--blue-dark);
+            line-height: 1.5;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+            padding: 35px 15px;
+            }
+
+            body.hide-scrolling {
+            overflow: hidden;
+            }
+
+            body::before {
+            content: '';
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            background-color: var(--green-yellow);
+            z-index: -1;
+            opacity: 0.12;
+            }
+
+            a {
+            text-decoration: none;
+            }
+
+            h1,
+            h2 {
+            font-weight: 600;
+            }
+
+            h3,
+            h4,
+            h5,
+            h6 {
+            font-weight: 500;
+            }
+
+            img {
+            max-width: 100%;
+            vertical-align: middle;
+            }
+
+            ul {
+            list-style: none;
+            }
+
+            section {
+            background-color: var(--white-alpa-25);
+            border: 1px solid var(--white-alpa-40);
+            min-height: calc(100vh - 70px);
+            border-radius: 30px;
+            backdrop-filter: var(--backdrop-filter-blur);
+            }
+
+            section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out forwards;
+            }
+
+            section.fade-out {
+            animation: fadeOut 0.5s ease-in-out forwards;
+            }
+
+            .main {
+            max-width: 1200px;
+            margin: auto;
+            transition: all 0.5s ease-in-out;
+            position: relative;
+            }
+
+            .main.fade-out {
+            opacity: 0;
+            }
+
+            .container {
+            padding: 0 40px;
+            width: 100%;
+            }
+
+            .row {
+            display: flex;
+            flex-wrap: wrap;
+            }
+
+            .align-item-center {
+            align-items: center;
+            }
+
+            .hidden {
+            display: none !important;
+            }
+
+            .sec-padding {
+            padding: 80px 0;
+            }
+
+            .section-title {
+            padding: 0 15px;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 40px;
+            }
+
+            .flex-end {
+            justify-content: flex-end;
+            }
+
+            .section-title h2 {
+            font-size: 40px;
+            text-transform: capitalize;
+            }
+
+            /* scroll bar */
+            ::-webkit-scrollbar {
+            width: 5px;
+            }
+
+            ::-webkit-scrollbar-track {
+            background-color: var(--white);
+            }
+
+            ::-webkit-scrollbar-thumb {
+            background-color: var(--main-color);
+            }
+
+            /* botton/tombol */
+            button {
+            font-family: inherit;
+            user-select: none;
+            }
+
+            .btn {
+            line-height: 1.5;
+            background-color: var(--white-alpa-25);
+            border: 1px soid var(--white-alpa-40);
+            padding: 10px 28px;
+            display: inline-block;
+            border-radius: 30px;
+            color: var(--main-color);
+            font-weight: 500;
+            text-transform: capitalize;
+            font-family: inherit;
+            font-size: 16px;
+            cursor: pointer;
+            user-select: none;
+            position: relative;
+            overflow: hidden;
+            vertical-align: middle;
+            transition: color 0.3s ease;
+            }
+
+            .btn::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0%;
+            background-color: var(--main-color);
+            z-index: -1;
+            transition: width 0.3s ease;
+            }
+
+            .btn:hover::before {
+            width: 100%;
+            }
+
+            .btn:hover {
+            color: var(--white);
+            }
+
+            /* Animation */
+            @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+            }
+
+            @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+            }
+
+            @keyframes zoomInOut {
+            0%,
+            100% {
+                transform: scale(0.5);
+            }
+
+            50% {
+                transform: scale(1);
+            }
+            }
+
+            @keyframes bounceTop {
+            0%,
+            100% {
+                transform: translateY(-50px);
+            }
+
+            50% {
+                transform: translateY(0px);
+            }
+            }
+
+            @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+            }
+
+            /* background circles */
+            .bg-circles {
+            position: fixed;
+            top: 0;
+            height: 100%;
+            max-width: 1200px;
+            width: calc(100% - 30px);
+            left: 50%;
+            transform: translateX(-50%);
+            }
+
+            .bg-circles div {
+            position: absolute;
+            border-radius: 50%;
+            }
+
+            .bg-circles .circle-1 {
+            height: 60px;
+            width: 60px;
+            background-color: var(--blue);
+            left: 5%;
+            top: 10%;
+            opacity: 0.3;
+            animation: zoomInOut 8s linear infinite;
+            }
+
+            .bg-circles .circle-2 {
+            height: 80px;
+            width: 80px;
+            background-color: var(--main-color);
+            left: 30%;
+            top: 50%;
+            opacity: 0.4;
+            animation: bounceTop 5s ease-in-out infinite;
+            }
+
+            .bg-circles .circle-3 {
+            height: 120px;
+            width: 120px;
+            background-color: var(--white);
+            top: 40%;
+            right: -60px;
+            opacity: 0.6;
+            }
+
+            .bg-circles .circle-4 {
+            height: 50px;
+            width: 50px;
+            background-color: var(--orange);
+            left: -30px;
+            top: 80%;
+            opacity: 0.6;
+            }
+
+            /* overlay */
+            .overlay {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            background-color: transparent;
+            z-index: 200;
+            visibility: hidden;
+            }
+
+            .overlay.active {
+            visibility: visible;
+            }
+
+            /* header */
+            * {
+            box-sizing: border-box;
+            }
+            .header {
+            overflow: hidden;
+            padding: 20px 10px;
+            }
+            .header a {
+            float: left;
+            color: black;
+            text-align: center;
+            padding: 12px;
+            text-decoration: none;
+            font-size: 15px;
+            line-height: 25px;
+            border-radius: 5px;
+            }
+            .headera.logo {
+            font-size: 25px;
+            font-weight: bold;
+            }
+            .header a:hover {
+            background-color: var(--pink-light);
+            color: black;
+            }
+            .headera.active {
+            background-color: green;
+            color: white;
+            }
+            .header-right {
+            float: right;
+            }
+            @media screen and (max-width: 500px) {
+            .header a {
+                float: none;
+                display: block;
+                text-align: left;
+            }
+            .header-right {
+                float: none;
+            }
+            }
+            .nav-text {
+            font-size: 24px;
+            line-height: 36px;
+            }
+            /* halaman home */
+            .home-section {
+            padding: 120px 0;
+            }
+
+            .home-section.active {
+            display: flex;
+            }
+
+            .home-text,
+            .home-img {
+            width: 50%;
+            padding: 15px;
+            }
+
+            .home-text p {
+            font-size: 18px;
+            }
+
+            .home-text h1 {
+            font-size: 50px;
+            text-transform: capitalize;
+            }
+
+            .home-text h2 {
+            font-size: 20px;
+            text-transform: capitalize;
+            font-weight: 300;
+            margin: 0 0 30px;
+            }
+
+            .home-text .btn {
+            margin: 0 15px 15px 0;
+            }
+
+            .home-img .img-box {
+            max-width: 360px;
+            background-color: var(--white-alpa-25);
+            border-radius: 50%;
+            border: 8px solid var(--white-alpa-25);
+            margin: auto;
+            }
+
+            .home-img .img-box img {
+            width: 100%;
+            border-radius: 3%;
+            }
+
+            .about-img {
+            width: 40%;
+            padding: 0 15px;
+            }
+
+            .about-text {
+            width: 60%;
+            padding: 0 15px;
+            }
+
+            .about-img .img-box {
+            background-color: var(--white-alpa-25);
+            max-width: 380px;
+            border: 1px solid var(--white-alpa-40);
+            margin: auto;
+            border-radius: 10px;
+            }
+
+            .about-img .img-box img {
+            width: 100%;
+            }
+
+            .about-text h3 {
+            text-transform: capitalize;
+            font-size: 20px;
+            margin: 20px 0;
+            }
+
+            .about-text .cabang {
+            display: flex;
+            flex-wrap: wrap;
+            }
+
+            .about-text .cabang-item {
+            background-color: var(--white-alpa-25);
+            border: 1px solid var(--white-alpa-40);
+            padding: 5px 15px;
+            text-transform: capitalize;
+            margin: 0 10px 10px 0;
+            border-radius: 20px;
+            }
+
+            .about-tabs {
+            margin-top: 20px;
+            }
+
+            .about-tabs .tab-item {
+            padding: 2px 0;
+            background-color: transparent;
+            border: none;
+            text-transform: capitalize;
+            display: inline-block;
+            color: var(--blue-dark);
+            font-size: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            margin: 0 30px 0 0;
+            position: relative;
+            opacity: 0.5;
+            transition: all 0.3s ease;
+            }
+
+            .about-tabs .tab-item:last-child {
+            margin: 0;
+            }
+
+            .about-tabs .tab-item:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0%;
+            height: 1px;
+            background-color: var(--blue-dark);
+            transition: width 0.3s ease;
+            }
+
+            .about-tabs .tab-item:hover::before {
+            width: 100%;
+            }
+
+            .about-tabs .tab-item:active::before {
+            width: 100%;
+            background-color: var(--main-color);
+            }
+
+            .about-tabs .tab-item.active {
+            color: var(--main-color);
+            opacity: 1;
+            cursor: auto;
+            }
+
+            .about-text .timeline {
+            position: relative;
+            }
+
+            .about-text .timeline::before {
+            content: '';
+            position: absolute;
+            height: 100%;
+            width: 1px;
+            top: 0;
+            left: 5px;
+            background-color: var(--main-color);
+            }
+
+            .about-text .tab-content {
+            padding: 40px 0;
+            display: none;
+            }
+
+            .about-text .tab-content.active {
+            display: block;
+            }
+
+            .about-text .timeline-item {
+            margin-bottom: 30px;
+            position: relative;
+            padding: 10px 0 0 40px;
+            }
+
+            .about-text .timeline-item::before {
+            content: '';
+            position: absolute;
+            height: 11px;
+            width: 11px;
+            background-color: var(--main-color);
+            left: 0;
+            top: 16px;
+            border-radius: 50%;
+            }
+
+            .about-text .timeline-item:last-child {
+            margin-bottom: 0;
+            }
+
+            .about-text .timeline-item .date {
+            display: block;
+            color: var(--main-color);
+            font-weight: 400;
+            margin: 0 0 10px;
+            }
+
+            .about-text .timeline-item h4 {
+            font-size: 18px;
+            text-transform: capitalize;
+            margin: 0 0 10px;
+            }
+
+            .about-text .timeline-item h4 span {
+            font-weight: 400;
+            }
+
+            .about-text .btn {
+            margin: 0 15px 15px 0;
+            }
+
+            /* ----------------------------------
+            --------------Portfolio ----------------------- */
+            .portfolio-section {
+            padding-bottom: 50px;
+            }
+
+            .portfolio-item {
+            width: calc((100% / 3) - 30px);
+            margin: 0 15px 30px;
+            }
+
+            .portfolio-item-thumbnail {
+            padding: 10px;
+            background-color: var(--white-alpha-25);
+            border: 1px solid var(--white-alpha-40);
+            border-radius: 10px;
+            }
+
+            .portfolio-item-thumbnail img {
+            width: 100%;
+            border-radius: 10px;
+            }
+
+            .portfolio-item h3 {
+            font-size: 20px;
+            text-transform: capitalize;
+            margin: 20px 0;
+            }
+
+            .portfolio-item-details {
+            display: none;
+            }
+
+            @media (max-width: 991px) {
+            .container {
+                padding: 0;
+            }
+
+            .home-text,
+            .home-img {
+                width: 100%;
+            }
+
+            .home-text {
+                text-align: center;
+            }
+
+            .home-img {
+                order: -1;
+            }
+
+            .home-img .img-box {
+                max-width: 300px;
+            }
+
+            .home-text .btn {
+                margin: 0 7px 15px;
+            }
+
+            .portfolio-item {
+                width: calc(50% - 30px);
+            }
+            }
+
+            @media (max-width: 767px) {
+            .contact-form,
+            .contact-info,
+            .about-img,
+            .about-text {
+                width: 100%;
+            }
+
+            .about-text {
+                margin-top: 30px;
+            }
+
+            .portfolio-item {
+                width: calc(100% - 30px);
+            }
+
+            .pp-inner {
+                padding: 30px 15px;
+            }
+
+            .contact-info {
+                order: -1;
+                margin-bottom: 15px;
+            }
+
+            .contact-info-item {
+                padding: 0;
+            }
+            }
+
+            @media (max-width: 575px) {
+            .section-title h2,
+            .header .nav-inner ul li a {
+                font-size: 35px;
+            }
+
+            .home-text h1 {
+                font-size: 30px;
+            }
+
+            .home-text h2 {
+                font-size: 18px;
+            }
+
+            .pp-header h3 {
+                font-size: 20px;
+            }
+            }
+
+
+            #contact {
+            background: #cce2f6;
+            padding: 50px 0px 50px 0px;    
+            }
+
+            .footer {
+            width: 100%;
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            margin: auto;
+            }
+
+            .footer-section {
+            width: 20%;
+            margin: 0 auto;
+            }
+
+            h3 {
+            font-family: 'comic sans ms';
+            font-weight: 100;
+            font-size: 30px;
+            margin-bottom: 20px;
+            color: #5c4c3b;
+            width: 100%;
+            line-height: 50%;
+            }
+
+            #copyright {
+            text-align: center;
+            width: 100%;
+            padding: 50px 0px 50px 0px;
+            margin-top: 40px;
+            }
+
+            @media screen and (max-width: 991.98px) {
+            .wrapper {
+                width: 90%;
+            }
+
+            .logo a{
+                display: block;
+                width: 100%;
+                text-align: center;
+            }
+
+            nav.menu {
+                width: 100%;
+                margin: 0;
+            }
+
+            nav .menu ul {
+                text-align: center;
+                margin: auto;
+                line-height: 60px;
+            }
+
+            nav .menu ul li {
+                display: inline-block;
+                float: none;
+            }
+
+            section {
+                display: block;
+            }
+
+            section img {
+                display: block;
+                width: 100%;
+                height: auto;
+            }
+
+            .kartu-tutor {
+                width: 50%;
+            }
+
+            .kartu-partner {
+                width: 50%;
+            }
+    }
+
+    </style>
   </head>
 
   <body>
@@ -43,19 +832,15 @@
       <div class="container">
         <div class="row align-item-center">
           <div class="home-text">
-            <p>Hello, I'm</p>
+            <p>Hello, We are</p>
             <h1>Kelompok Pembelajaran</h1>
-            <h2>MMKD <b>A141</b></h2>
+            <h2>MKKD <b>A141</b></h2>
             <a href="#about" class="btn link-item">About us</a>
-            <a href="#produk" class="btn link-item">Delicious Food</a>
+            <a href="#portfolio" class="btn link-item">Delicious Food</a>
           </div>
           <div class="home-img">
             <div class="img-box">
-              <img
-                src="https://img.freepik.com/free-photo/rear-view-programmer-working-all-night-long_1098-18697.jpg?size=338&ext=jpg"
-                alt=""
-                class=""
-              />
+              <img src="https://img.freepik.com/free-photo/rear-view-programmer-working-all-night-long_1098-18697.jpg?size=338&ext=jpg" alt="" class="" />
             </div>
           </div>
         </div>
@@ -66,43 +851,26 @@
       <div class="container">
         <div class="row">
           <div class="section-title">
-            <h2>about me</h2>
+            <h2>About Us</h2>
           </div>
         </div>
         <div class="row">
-          <div class="about-img">
+          <div class="img-box">
             <div class="img-box">
-              <img src="img/2.jpg" alt="about-img" />
+              <img src="https://img.freepik.com/free-vector/group-young-people-waving-hand_23-2148361692.jpg?size=338&ext=jpg" alt="about-img" />
             </div>
           </div>
           <div class="about-text">
             <h2>About MKKD A141</h2>
-            <p>
-              MKKD A141 terdiri dari 5 anggota kelompok yang berinisiatif untuk
-              membuat website tentang makanan. Karena makanan adalah kebutuhan
-              no 1, jadi kita berfikir agar website kami bisa diakses oleh
-              khalayak umum agar mengetahui jenis-jenis makanan dari Indonesia
-              maupun dari luar negeri
-            </p>
-            <br />
+            <p>MKKD A141 terdiri dari 5 anggota kelompok yang berinisiatif untuk membuat website tentang makanan. Makanan adalah salah satu kebutuhan primeryang tentunya tidak lepas dari kehidupan manusia. Dengan hal ini, kami berharap agar website kami bisa diakses oleh khalayak umum untuk mengetahui berbagai makanan lezat dari Indonesia maupun dari luar negeri</p>
             <h2>Delicious Food</h2>
-            <p>
-              Popularitas Korean wave membuat seluruh dunia tergila-gila budaya
-              Korea. Gaungnya bahkan sampai ke Indonesia. Berkat musik Korea,
-              berbagai jenis hiburan dari negeri ginseng pun diterima warga
-              Indonesia dengan baik. Begitu juga dengan kulinernya. Sekarang ini
-              cukup banyak restoran dan kedai yang menyajikan masakan Korea.
-              Harganya pun variatif, ada yang ramah di kantung dan ada pula yang
-              dibanderol dengan harga premium.Bagi Anda yang sedang ngidam
-              masakan Korea, coba bikin sendiri, yuk! Berikut ini beberapa jenis
-              masakan Korea yang lagi hype di masa sekarang.
-            </p>
+            <p>Popularitas Korean wave membuat seluruh dunia tergila-gila budaya Korea. Gaungnya bahkan sampai ke Indonesia. Berkat musik Korea, berbagai jenis hiburan dari negeri ginseng pun diterima warga Indonesia dengan baik. Begitu juga dengan kulinernya. Sekarang ini cukup banyak restoran dan kedai yang menyajikan masakan Korea. Harganya pun variatif, ada yang ramah di kantung dan ada pula yang dibanderol dengan harga premium.Bagi Anda yang sedang ngidam masakan Korea, coba bikin sendiri, yuk! Berikut ini beberapa jenis masakan Korea yang lagi hype di masa sekarang.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="produk-section sec-padding" id="produk">
+    <section class="portfolio-section sec-padding" id="produk">
       <div class="container">
         <div class="row">
           <div class="section-title">
@@ -111,84 +879,85 @@
           </div>
         </div>
         <div class="row">
-          <div class="produk-item">
-            <div class="produk-item-thumbnail">
-              <img src="img/11.png" />
+          <div class="portfolio-item">
+            <div class="portfolio-item-thumbnail">
+              <img src="https://iamafoodblog.b-cdn.net/wp-content/uploads/2021/07/tteokbokki-4588w.jpg">
             </div>
-            <h3 class="produk-item-title">1. Tteokbokki (Kue Beras Pedas)</h3>
-            <p class="deskripsi">
-              Tteokbokki merupakan sejenis kue berbahan beras yang disajikan
-              dengan saus pedas berbasis gochujang. Karena harganya yang lumayan
-              saat dijual di kedai atau restoran, akhirnya tak sedikit pecinta
-              kuliner negeri ginseng yang penasaran dengan cara membuat
-              tteokbokki sendiri.
-            </p>
+            <h3 class="portfolio-item-title">1. Tteokbokki (Kue Beras Pedas)</h3>
+            <p>Tteokbokki merupakan sejenis kue berbahan beras yang disajikan dengan saus pedas berbasis gochujang. Karena harganya yang lumayan saat dijual di kedai atau restoran, akhirnya tak sedikit pecinta kuliner negeri ginseng yang penasaran dengan cara membuat tteokbokki sendiri.</p>
           </div>
-          <div class="produk-item">
-            <div class="produk-item-thumbnail">
-              <img src="img/3.png" />
+          <div class="portfolio-item">
+            <div class="portfolio-item-thumbnail">
+              <img src="https://i.pinimg.com/originals/87/db/fc/87dbfc5a7e6859e279cd88f8f0f913aa.png">
             </div>
-            <h3 class="produk-item-title">2. Kimchi Sujebi (Sup Pangsit)</h3>
-            <p class="deskripsi">
-              Ini adalah sejenis sup berbasis kimchi dan gochujang yang biasa
-              disantap warga negeri ginseng. Pangsit di masakan kimchi sujebi
-              dibuat dari adonan tepung terigu yang disobek-sobek dengan tangan,
-              kemudian direbus dengan kaldu hingga matang.
-            </p>
+            <h3 class="portfolio-item-title">2. Kimchi Sujebi (Sup Pangsit)</h3>
+            <p>Ini adalah sejenis sup berbasis kimchi dan gochujang yang biasa disantap warga negeri ginseng. Pangsit di masakan kimchi sujebi dibuat dari adonan tepung terigu yang disobek-sobek dengan tangan, kemudian direbus dengan kaldu hingga matang.</p>
           </div>
-          <div class="produk-item">
-            <div class="produk-item-thumbnail">
-              <img src="img/10.png" />
+          <div class="portfolio-item">
+            <div class="portfolio-item-thumbnail">
+              <img src="https://asset.kompas.com/crops/VVZoX-U0LdbwTsDiydzSdjEt05U=/0x1:1000x668/750x500/data/photo/2020/10/19/5f8d2a522385d.jpg">
             </div>
-            <h3 class="produk-item-title">3. Japchae</h3>
-            <p class="deskripsi">
-              Japchae sebenarnya adalah masakan sejenis bihun goreng, hanya saja
-              menggunakan bihun yang terbuat dari ketela. Mi dimasak dengan
-              kecap, madu, sayuran, daging, dan ditaburi wijen.Meskipun dibuat
-              dari mi, japchae tidak dimakan sebagai hidangan utama. Masakan ini
-              biasanya justru disajikan sebagai hidangan pendamping.
-            </p>
+            <h3 class="portfolio-item-title">3. Japchae (Bihun Goreng ala Korea)</h3>
+            <p>Japchae sebenarnya adalah masakan sejenis bihun goreng, hanya saja menggunakan bihun yang terbuat dari ketela. Mi dimasak dengan kecap, madu, sayuran, daging, dan ditaburi wijen.Meskipun dibuat dari mi, japchae tidak dimakan sebagai hidangan utama. Masakan ini biasanya justru disajikan sebagai hidangan pendamping.</p>
           </div>
-          <div class="produk-item">
-            <div class="produk-item-thumbnail">
-              <img src="img/9.png" />
+          <div class="portfolio-item">
+            <div class="portfolio-item-thumbnail">
+              <img src="https://cdn-2.tstatic.net/style/foto/bank/images/tokkebi_20171223_211414.jpg">
             </div>
-            <h3 class="produk-item-title">4. Tokebi (Hot Dog Kentang)</h3>
-            <p class="deskripsi">
-              Jajanan yang bernama tokebi berawal dari Korea Selatan, lalu
-              mewabah ke Jepang dan akhirnya hampir di seluruh negara.Pada
-              dasarnya hotang atau tokebi adalah sejenis corn dog, terbuat dari
-              sosis atau keju yang ditusuk lidi, kemudian dilapisi adonan
-              tepung. Sebagai variasi, tokebi dibalur potongan kentang goreng
-              lagi.
-            </p>
+            <h3 class="portfolio-item-title">4. Tokebi (Hot Dog Kentang)</h3>
+            <p>Jajanan yang bernama tokebi berawal dari Korea Selatan, lalu mewabah ke Jepang dan akhirnya hampir di seluruh negara.Pada dasarnya hotang atau tokebi adalah sejenis corn dog, terbuat dari sosis atau keju yang ditusuk lidi, kemudian dilapisi adonan tepung. Sebagai variasi, tokebi dibalur potongan kentang goreng lagi.</p>
           </div>
 
-          <div class="produk-item">
-            <div class="produk-item-thumbnail">
-              <img src="img/6.png" />
+          <div class="portfolio-item">
+            <div class="portfolio-item-thumbnail">
+              <img src="https://cdns.klimg.com/merdeka.com/i/w/news/2020/03/11/1155067/540x270/cara-membuat-kimbab-jjampong-dan-bibimbap-mudah-dilakukan-di-rumah.jpg">
             </div>
-            <h3 class="produk-item-title">5. Kimbap (Nasi Gulung Korea)</h3>
-            <p class="deskripsi">
-              Kimbap atau gimbap yang secara harfiah berarti nasi rumput laut.
-            </p>
+            <h3 class="portfolio-item-title">5. Kimbap (Nasi Gulung Korea)</h3>
+            <p>Kimbap atau gimbap yang secara harfiah berarti nasi rumput laut.</p>
           </div>
-          <div class="produk-item">
-            <div class="produk-item-thumbnail">
-              <img src="img/7.png" />
+          <div class="portfolio-item">
+            <div class="portfolio-item-thumbnail">
+              <img src="https://cdn.idntimes.com/content-images/community/2021/02/untitled-0b2e3fe55c98e8dc089991ca6127b017-5ed370272ceb6e2faffdefecae125fb4_600x400.jpg">
             </div>
-            <h3 class="produk-item-title">6. Maeun Dakbal</h3>
-            <p class="deskripsi">
-              Olahan ceker yang populer di sana adalah maeun dakbal. Rasanya
-              pedas berbumbu dengan taburan daun bawang dan wijen sangrai.
-            </p>
+            <h3 class="portfolio-item-title">6. Maeun Dakbal (Ceker Pedas ala Korea)</h3>
+            <p>Olahan ceker yang populer di sana adalah maeun dakbal. Rasanya pedas berbumbu dengan taburan daun bawang dan wijen sangrai.</p>
           </div>
         </div>
       </div>
     </section>
-
-    <div id="copyright">
-      <div class="wrapper">&copy; 2021. <b>MKKDA141</b> All right Reserved</div>
-    </div>
+        <!--footer-->
+        <div id="contact">
+          <div class="wrapper">
+              <div class="footer">
+                  <div class="footer-section">
+                      <h3>MKKD A141</h3>
+                      <P>MKKD A141 terdiri dari 5 anggota kelompok yang berinisiatif untuk membuat website tentang makanan. Kelompok ini mulai aktif membuat website makanan sejak 2021.</P>
+                  </div>
+                  <div class="footer-section">
+                      <h3>About us</h3>
+                      <P>MKKD A141 terdiri dari 5 anggota kelompok yang berinisiatif untuk membuat website tentang makanan. Kami berharap agar website kami bisa diakses oleh khalayak umum untuk mengetahui berbagai makanan lezat yang ada di Indonesia maupun dari luar negeri.</P>
+                  </div>
+                  <div class="footer-section">
+                      <h3>Contact</h3>
+                      <p>Jl. Happy Tummy, Happy People Town, Indonesia</p>
+                      <p>Kode Pos 123456</p>
+                  </div>
+                  <div class="footer-section">
+                      <h3>Social Media</h3>
+                      <p>Youtube: </b>MKKD A141 Official</p>
+                      <p>Instagram: </b>@MKKD.A141</p>
+                      <p>Twitter: </b>@MKKD.A141</p>
+                      <P>TikTok: </b>MKKDA141</P>
+                  </div>
+              </div>
+          </div>
+      </div>
+  
+      <div id="copyright">
+          <div class="wrapper">
+              &copy; 2020. <b>MKKDA141</b> All right Reserved
+              
+          </div>
+      </div>
   </body>
 </html>
