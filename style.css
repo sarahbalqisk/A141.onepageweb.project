@@ -422,7 +422,6 @@ button {
 .home-img .img-box {
   max-width: 360px;
   background-color: var(--white-alpa-25);
-  border-radius: 50%;
   border: 8px solid var(--white-alpa-25);
   margin: auto;
 }
@@ -589,36 +588,34 @@ button {
   margin: 0 15px 15px 0;
 }
 
-/* ----------------------------------
---------------Portfolio ----------------------- */
-.portfolio-section {
+.produk-section {
   padding-bottom: 50px;
 }
 
-.portfolio-item {
+.produk-item {
   width: calc((100% / 3) - 30px);
   margin: 0 15px 30px;
 }
 
-.portfolio-item-thumbnail {
+.produk-item-thumbnail {
   padding: 10px;
   background-color: var(--white-alpha-25);
   border: 1px solid var(--white-alpha-40);
   border-radius: 10px;
 }
 
-.portfolio-item-thumbnail img {
+.produk-item-thumbnail img {
   width: 100%;
   border-radius: 10px;
 }
 
-.portfolio-item h3 {
+.produk-item h3 {
   font-size: 20px;
   text-transform: capitalize;
   margin: 20px 0;
 }
 
-.portfolio-item-details {
+.produk-item-details {
   display: none;
 }
 
@@ -648,7 +645,7 @@ button {
     margin: 0 7px 15px;
   }
 
-  .portfolio-item {
+  .produk-item {
     width: calc(50% - 30px);
   }
 }
@@ -665,7 +662,7 @@ button {
     margin-top: 30px;
   }
 
-  .portfolio-item {
+  .produk-item {
     width: calc(100% - 30px);
   }
 
@@ -702,10 +699,9 @@ button {
   }
 }
 
-
 #contact {
   background: #cce2f6;
-  padding: 50px 0px 50px 0px;    
+  padding: 50px 0px 50px 0px;
 }
 
 .footer {
@@ -740,46 +736,50 @@ h3 {
 
 @media screen and (max-width: 991.98px) {
   .wrapper {
-      width: 90%;
+    width: 90%;
   }
 
-  .logo a{
-      display: block;
-      width: 100%;
-      text-align: center;
+  .logo a {
+    display: block;
+    width: 100%;
+    text-align: center;
   }
 
   nav.menu {
-      width: 100%;
-      margin: 0;
+    width: 100%;
+    margin: 0;
   }
 
   nav .menu ul {
-      text-align: center;
-      margin: auto;
-      line-height: 60px;
+    text-align: center;
+    margin: auto;
+    line-height: 60px;
   }
 
   nav .menu ul li {
-      display: inline-block;
-      float: none;
+    display: inline-block;
+    float: none;
   }
 
   section {
-      display: block;
+    display: block;
   }
 
   section img {
-      display: block;
-      width: 100%;
-      height: auto;
+    display: block;
+    width: 100%;
+    height: auto;
   }
 
   .kartu-tutor {
-      width: 50%;
+    width: 50%;
   }
 
   .kartu-partner {
-      width: 50%;
+    width: 50%;
   }
+}
+
+.deskripsi {
+  text-align: justify;
 }
